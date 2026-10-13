@@ -2,11 +2,15 @@ import argparse, os
 import numpy as np
 import pandas as pd
 
+# CHANGED: in these modes the index is deliberately stale, so "blocked" must be judged
+# from what reaches the LLM context (protected_in_prompt), not from what the index returns.
+GATE_MODES = {"query-time", "hybrid"}
 
-def stable_block_time(g, k):
+
+def stable_block_time(g, k, col="protected_returned"):      # CHANGED: column is a parameter
     """First attempt after which k consecutive attempts are all blocked
     (and it stays blocked for the rest of the trial). Returns timestamp or NaN."""
-    blocked = (g["protected_returned"] == 0).to_numpy()
+    blocked = (g[col] == 0).to_numpy()
     ts = g["attempt_ts"].to_numpy()
     n = len(g)
     # suffix check: from index i onward, everything is blocked
@@ -66,13 +70,15 @@ def main():
     trials = trials[~trials.trial_id.isin(warm)]
 
     # 4. attempts: keep only post-revocation attempts of surviving trials
-    att = att.merge(trials[["trial_id", "t_revocation"]], on="trial_id", how="inner")
+    att = att.merge(trials[["trial_id", "t_revocation", "mode"]], on="trial_id", how="inner")  # CHANGED: also bring in mode
     att = att[att["attempt_ts"] >= att["t_revocation"]]            # pre-revocation = not part of window
     att = att.sort_values(["trial_id", "attempt_ts"])
 
     rows = []
     for tid, g in att.groupby("trial_id"):
         t_rev = g["t_revocation"].iloc[0]
+        block_col = ("protected_in_prompt" if g["mode"].iloc[0] in GATE_MODES   # CHANGED
+                     else "protected_returned")
         n_all = len(g)
         err = (g["http_status"] != 200).mean()
         if n_all < args.k:
@@ -81,7 +87,7 @@ def main():
             drop([tid], f"error rate {err:.1%} > {args.max_error_rate:.0%}"); continue
         g = g[g["http_status"] == 200]                              # errors are not 'blocked'
 
-        t_enf = stable_block_time(g, args.k)
+        t_enf = stable_block_time(g, args.k, block_col)             # CHANGED: pass the column
         censored = bool(np.isnan(t_enf))                            # never stably blocked
         rpt = np.nan if censored else t_enf - t_rev
         if not censored and rpt < 0:
