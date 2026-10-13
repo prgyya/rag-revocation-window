@@ -19,6 +19,12 @@ def sync_doc(cur, client, collection, doc):
     client.set_payload(collection, payload={"allowed_principals": principals}, points=doc_filter(doc))
 
 
+def build_context(hits, k_ctx=5):
+    """Chunks that would be passed to the LLM. No post-retrieval gate in this mode,
+    so every retrieved chunk goes into the context."""
+    return hits[:k_ctx]
+
+
 def event_worker(stop, ready, collection):
     """Listens for 'acl_changed' events and updates Qdrant as soon as one arrives."""
     conn = psycopg2.connect(**PG)
@@ -49,13 +55,15 @@ def run_trial(a, conn, client):
         t, p0 = time.time(), time.perf_counter()
         try:
             hits = client.query_points(a.collection, query=vec, query_filter=flt, limit=5).points
-            got, status = int(any(h.payload["doc_id"] == doc for h in hits)), 200
+            got = int(any(h.payload["doc_id"] == doc for h in hits))          # URR
+            ctx = int(any(h.payload["doc_id"] == doc for h in build_context(hits)))  # CER
+            status = 200
         except Exception:
-            got, status = 0, 500
-        return t, got, status, (time.perf_counter() - p0) * 1000
+            got, ctx, status = 0, 0, 500
+        return t, got, status, (time.perf_counter() - p0) * 1000, ctx
 
     header = ["trial_id", "mode", "config", "t_revocation", "baseline_ok", "status"]
-    _, got, status, _ = probe()
+    _, got, status, _, _ = probe()
     if not (got == 1 and status == 200):
         append_rows(f"{a.out}/trials.csv", header, [[trial_id, "event", config, time.time(), 0, "ok"]])
         print(f"{trial_id}: baseline failed for {user} / {doc}, trial skipped")
@@ -78,8 +86,8 @@ def run_trial(a, conn, client):
 
     attempts = []
     while time.time() < t_rev + a.window:
-        t, got, status, ms = probe()
-        attempts.append([trial_id, t, got, got, status, round(ms, 1)])
+        t, got, status, ms, ctx = probe()
+        attempts.append([trial_id, t, got, ctx, status, round(ms, 1)])
         time.sleep(max(0.0, a.probe_ms / 1000 - ms / 1000))
 
     i = len(attempts)                                         # start of the final blocked run
