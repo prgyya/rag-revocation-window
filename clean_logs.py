@@ -2,18 +2,12 @@ import argparse, os
 import numpy as np
 import pandas as pd
 
-# CHANGED: in these modes the index is deliberately stale, so "blocked" must be judged
-# from what reaches the LLM context (protected_in_prompt), not from what the index returns.
-GATE_MODES = {"query-time", "hybrid"}
-
-
-def stable_block_time(g, k, col="protected_returned"):      # CHANGED: column is a parameter
+def stable_block_time(g, k, col="protected_returned"):
     """First attempt after which k consecutive attempts are all blocked
     (and it stays blocked for the rest of the trial). Returns timestamp or NaN."""
     blocked = (g[col] == 0).to_numpy()
     ts = g["attempt_ts"].to_numpy()
     n = len(g)
-    # suffix check: from index i onward, everything is blocked
     all_blocked_from = np.zeros(n, dtype=bool)
     run = True
     for i in range(n - 1, -1, -1):
@@ -46,7 +40,7 @@ def main():
         for t in ids:
             excl.append({"trial_id": t, "reason": reason})
 
-    # 1. basic integrity: duplicates, missing values, flag types
+    # 1. basic integrity: duplicates, missing values
     dup = trials[trials.duplicated("trial_id", keep="first")]["trial_id"]
     drop(dup, "duplicate trial_id")
     trials = trials.drop_duplicates("trial_id", keep="first")
@@ -70,39 +64,40 @@ def main():
     trials = trials[~trials.trial_id.isin(warm)]
 
     # 4. attempts: keep only post-revocation attempts of surviving trials
-    att = att.merge(trials[["trial_id", "t_revocation", "mode"]], on="trial_id", how="inner")  # CHANGED: also bring in mode
-    att = att[att["attempt_ts"] >= att["t_revocation"]]            # pre-revocation = not part of window
+    att = att.merge(trials[["trial_id", "t_revocation"]], on="trial_id", how="inner")
+    att = att[att["attempt_ts"] >= att["t_revocation"]]
     att = att.sort_values(["trial_id", "attempt_ts"])
 
     rows = []
     for tid, g in att.groupby("trial_id"):
         t_rev = g["t_revocation"].iloc[0]
-        block_col = ("protected_in_prompt" if g["mode"].iloc[0] in GATE_MODES   # CHANGED
-                     else "protected_returned")
-        n_all = len(g)
         err = (g["http_status"] != 200).mean()
-        if n_all < args.k:
+        if len(g) < args.k:
             drop([tid], "too few attempts"); continue
         if err > args.max_error_rate:
             drop([tid], f"error rate {err:.1%} > {args.max_error_rate:.0%}"); continue
         g = g[g["http_status"] == 200]                              # errors are not 'blocked'
 
-        t_enf = stable_block_time(g, args.k, block_col)             # CHANGED: pass the column
-        censored = bool(np.isnan(t_enf))                            # never stably blocked
-        rpt = np.nan if censored else t_enf - t_rev
-        if not censored and rpt < 0:
+        t_idx = stable_block_time(g, args.k, "protected_returned")
+        t_ctx = stable_block_time(g, args.k, "protected_in_prompt")
+        rpt_idx = np.nan if np.isnan(t_idx) else t_idx - t_rev
+        rpt_ctx = np.nan if np.isnan(t_ctx) else t_ctx - t_rev
+        if (rpt_idx < 0) or (rpt_ctx < 0):                          # NaN compares False
             drop([tid], "negative RPT (clock/order problem)"); continue
 
         w = g[g["attempt_ts"] <= t_rev + args.window]
         rows.append({
-            "trial_id": tid, "rpt_s": rpt, "censored": censored,
+            "trial_id": tid,
+            "rpt_index_s": rpt_idx, "censored_index": bool(np.isnan(rpt_idx)),
+            "rpt_ctx_s": rpt_ctx, "censored_ctx": bool(np.isnan(rpt_ctx)),
             "urr": w["protected_returned"].mean() if len(w) else np.nan,
             "cer": w["protected_in_prompt"].mean() if len(w) else np.nan,
             "n_attempts": len(w), "error_rate": err,
         })
 
+    if not rows:
+        print("no trials survived cleaning"); return
     res = pd.DataFrame(rows).merge(trials[["trial_id", "mode", "config"]], on="trial_id")
-    # trials with no surviving attempts at all
     missing = set(trials.trial_id) - set(res.trial_id) - {e["trial_id"] for e in excl}
     drop(missing, "no valid post-revocation attempts")
 
@@ -112,9 +107,11 @@ def main():
     # 5. summary. Outliers are KEPT (tail values are the finding); censored are counted, not hidden
     def q(p): return lambda s: s.quantile(p)
     summ = res.groupby(["mode", "config"]).agg(
-        trials=("trial_id", "count"), censored=("censored", "sum"),
-        rpt_mean=("rpt_s", "mean"), rpt_median=("rpt_s", "median"),
-        rpt_p95=("rpt_s", q(0.95)), rpt_p99=("rpt_s", q(0.99)), rpt_max=("rpt_s", "max"),
+        trials=("trial_id", "count"),
+        cens_idx=("censored_index", "sum"), cens_ctx=("censored_ctx", "sum"),
+        idx_mean=("rpt_index_s", "mean"), idx_p95=("rpt_index_s", q(0.95)),
+        ctx_mean=("rpt_ctx_s", "mean"), ctx_median=("rpt_ctx_s", "median"),
+        ctx_p95=("rpt_ctx_s", q(0.95)), ctx_p99=("rpt_ctx_s", q(0.99)), ctx_max=("rpt_ctx_s", "max"),
         urr_mean=("urr", "mean"), cer_mean=("cer", "mean")).reset_index()
     summ.to_csv(f"{args.out}/summary.csv", index=False)
 
