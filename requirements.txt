@@ -1,0 +1,7 @@
+   faker
+   pandas
+   numpy
+   scikit-learn
+   psycopg2-binary
+   qdrant-client
+   sentence-transformers
