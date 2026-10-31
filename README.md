@@ -40,4 +40,4 @@ python clean_logs.py --trials results_X/trials.csv --attempts results_X/attempts
 Pragya Rai,
 Chetna Umakant Shete,
 Omkar Sanjay Jadhav,
-Swaraj Godalkar
+Swaraj Santosh Godalkar
