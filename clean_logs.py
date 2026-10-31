@@ -2,6 +2,13 @@ import argparse, os
 import numpy as np
 import pandas as pd
 
+# Two RPT definitions are reported for EVERY mode, so URR and CER keep their own meaning:
+#   rpt_index_s : time until the INDEX stops returning the protected chunk   (goes with URR)
+#   rpt_ctx_s   : time until the chunk stops reaching the LLM CONTEXT        (goes with CER)
+# For periodic/event there is no gate, so the two coincide. For query-time/hybrid the index
+# stays stale on purpose, so rpt_index is censored while rpt_ctx is ~0.
+
+
 def stable_block_time(g, k, col="protected_returned"):
     """First attempt after which k consecutive attempts are all blocked
     (and it stays blocked for the rest of the trial). Returns timestamp or NaN."""
@@ -68,6 +75,11 @@ def main():
     att = att[att["attempt_ts"] >= att["t_revocation"]]
     att = att.sort_values(["trial_id", "attempt_ts"])
 
+    # RPT comes from the clean REFERENCE search when the logs have it (new format);
+    # URR and CER always come from the WORKLOAD search. Old logs fall back to the old columns.
+    idx_col = "ref_returned" if "ref_returned" in att.columns else "protected_returned"
+    ctx_col = "ref_in_prompt" if "ref_in_prompt" in att.columns else "protected_in_prompt"
+
     rows = []
     for tid, g in att.groupby("trial_id"):
         t_rev = g["t_revocation"].iloc[0]
@@ -78,8 +90,8 @@ def main():
             drop([tid], f"error rate {err:.1%} > {args.max_error_rate:.0%}"); continue
         g = g[g["http_status"] == 200]                              # errors are not 'blocked'
 
-        t_idx = stable_block_time(g, args.k, "protected_returned")
-        t_ctx = stable_block_time(g, args.k, "protected_in_prompt")
+        t_idx = stable_block_time(g, args.k, idx_col)
+        t_ctx = stable_block_time(g, args.k, ctx_col)
         rpt_idx = np.nan if np.isnan(t_idx) else t_idx - t_rev
         rpt_ctx = np.nan if np.isnan(t_ctx) else t_ctx - t_rev
         if (rpt_idx < 0) or (rpt_ctx < 0):                          # NaN compares False
