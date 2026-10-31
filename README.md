@@ -37,7 +37,7 @@ python clean_logs.py --trials results_X/trials.csv --attempts results_X/attempts
 - `rank_check.py`: helps choose the search-relevance setting
 
 ## Team
-Pragya Rai
-Chetna Umakant Shete
-Omkar Sanjay Jadhav
+Pragya Rai,
+Chetna Umakant Shete,
+Omkar Sanjay Jadhav,
 Swaraj Godalkar
