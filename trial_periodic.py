@@ -17,7 +17,8 @@ CTX_K = 5       # chunks that are put into the LLM context
 
 TRIAL_HEADER = ["trial_id", "mode", "config", "t_revocation", "baseline_ok", "status"]
 ATTEMPT_HEADER = ["trial_id", "attempt_ts", "protected_returned", "protected_in_prompt",
-                  "http_status", "latency_ms", "ref_returned", "ref_in_prompt"]
+                  "http_status", "latency_ms", "ref_returned", "ref_in_prompt",
+                  "ctx_chunks", "ctx_chars"]
 
 
 def doc_filter(doc_id):
@@ -44,37 +45,47 @@ def query_vector(base, pool, min_alpha):
     return (q / np.linalg.norm(q)).tolist()
 
 
+class ProbeResult(tuple):
+    """(t, w_got, w_ctx, r_got, r_ctx, status, ms) plus how much unauthorized data the
+    workload search put into the context: .n chunks of the protected document, .chars of text."""
+    def __new__(cls, base, n=0, chars=0):
+        obj = super().__new__(cls, base)
+        obj.n, obj.chars = n, chars
+        return obj
+
+
 def make_prober(client, collection, flt, doc, vec, pool, min_alpha, context_fn, on_error=None):
     """Returns probe(vary=True) -> (t, w_got, w_ctx, r_got, r_ctx, status, ms).
     w_* = workload search, r_* = reference search."""
 
     def flags(hits):
         got = int(any(h.payload["doc_id"] == doc for h in hits))
-        ctx = int(any(h.payload["doc_id"] == doc for h in context_fn(hits)))
-        return got, ctx
+        mine = [h for h in context_fn(hits) if h.payload["doc_id"] == doc]
+        return got, int(bool(mine)), len(mine), sum(len(h.payload.get("text", "")) for h in mine)
 
     def probe(vary=True):
         t, p0 = time.time(), time.perf_counter()
         try:
             ref = client.query_points(collection, query=vec, query_filter=flt, limit=FETCH).points
-            r_got, r_ctx = flags(ref)
+            r_got, r_ctx, _, _ = flags(ref)
             q = query_vector(vec, pool, min_alpha) if vary else vec
             work = client.query_points(collection, query=q, query_filter=flt, limit=FETCH).points
-            w_got, w_ctx = flags(work)
+            w_got, w_ctx, w_n, w_chars = flags(work)
             status = 200
         except Exception:
             if on_error:
                 on_error()
-            w_got = w_ctx = r_got = r_ctx = 0
+            w_got = w_ctx = r_got = r_ctx = w_n = w_chars = 0
             status = 500
-        return t, w_got, w_ctx, r_got, r_ctx, status, (time.perf_counter() - p0) * 1000
+        return ProbeResult((t, w_got, w_ctx, r_got, r_ctx, status, (time.perf_counter() - p0) * 1000),
+                           w_n, w_chars)
 
     return probe
 
 
 def attempt_row(trial_id, p):
     t, w_got, w_ctx, r_got, r_ctx, status, ms = p
-    return [trial_id, t, w_got, w_ctx, status, round(ms, 1), r_got, r_ctx]
+    return [trial_id, t, w_got, w_ctx, status, round(ms, 1), r_got, r_ctx, p.n, p.chars]
 
 
 def final_blocked_run(attempts):
