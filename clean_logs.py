@@ -36,6 +36,8 @@ def main():
     ap.add_argument("--window", type=float, default=120.0,
                     help="fixed observation window (s) after revocation for URR/CER")
     ap.add_argument("--max-error-rate", type=float, default=0.05)
+    ap.add_argument("--qpm", type=float, default=1.0,
+                    help="ASSUMED queries per minute from the revoked user (for expected exposures)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
@@ -66,7 +68,7 @@ def main():
 
     # 3. warm-up: first N trials per mode+config (ordered by revocation time)
     trials = trials.sort_values("t_revocation")
-    warm = trials.groupby(["mode", "config"]).head(args.warmup)["trial_id"]
+    warm = trials[trials["config"] != "no-worker"].groupby(["mode", "config"]).head(args.warmup)["trial_id"]
     drop(warm, "warm-up trial")
     trials = trials[~trials.trial_id.isin(warm)]
 
@@ -98,12 +100,25 @@ def main():
             drop([tid], "negative RPT (clock/order problem)"); continue
 
         w = g[g["attempt_ts"] <= t_rev + args.window]
+        # the OPEN window = from revocation until the chunk stops reaching the context
+        t_end = np.inf if np.isnan(t_ctx) else t_ctx
+        o = w[w["attempt_ts"] < t_end]
+        cer_open = o["protected_in_prompt"].mean() if len(o) else np.nan
+        exp_exp = np.nan if np.isnan(rpt_ctx) else (args.qpm / 60.0) * rpt_ctx * (0.0 if np.isnan(cer_open) else cer_open)
         rows.append({
             "trial_id": tid,
             "rpt_index_s": rpt_idx, "censored_index": bool(np.isnan(rpt_idx)),
             "rpt_ctx_s": rpt_ctx, "censored_ctx": bool(np.isnan(rpt_ctx)),
             "urr": w["protected_returned"].mean() if len(w) else np.nan,
             "cer": w["protected_in_prompt"].mean() if len(w) else np.nan,
+            "urr_interval": o["protected_returned"].mean() if len(o) else np.nan,
+            "cer_interval": cer_open,
+            "leaked_probes": int(o["protected_returned"].sum()),
+            "ctx_chunks": o["ctx_chunks"].mean() if ("ctx_chunks" in o.columns and len(o)) else np.nan,
+            "ctx_chars": o["ctx_chars"].mean() if ("ctx_chars" in o.columns and len(o)) else np.nan,
+            "exp_exposures": exp_exp,
+            "lat_mean": w["latency_ms"].mean() if len(w) else np.nan,
+            "lat_p95": w["latency_ms"].quantile(0.95) if len(w) else np.nan,
             "n_attempts": len(w), "error_rate": err,
         })
 
@@ -124,7 +139,12 @@ def main():
         idx_mean=("rpt_index_s", "mean"), idx_p95=("rpt_index_s", q(0.95)),
         ctx_mean=("rpt_ctx_s", "mean"), ctx_median=("rpt_ctx_s", "median"),
         ctx_p95=("rpt_ctx_s", q(0.95)), ctx_p99=("rpt_ctx_s", q(0.99)), ctx_max=("rpt_ctx_s", "max"),
-        urr_mean=("urr", "mean"), cer_mean=("cer", "mean")).reset_index()
+        urr_mean=("urr", "mean"), cer_mean=("cer", "mean"),
+        urr_interval=("urr_interval", "mean"), cer_interval=("cer_interval", "mean"),
+        leaked_probes=("leaked_probes", "mean"),
+        ctx_chunks=("ctx_chunks", "mean"), ctx_chars=("ctx_chars", "mean"),
+        exp_exposures=("exp_exposures", "mean"),
+        lat_mean=("lat_mean", "mean"), lat_p95=("lat_p95", "mean")).reset_index()
     summ.to_csv(f"{args.out}/summary.csv", index=False)
 
     print(f"kept {len(res)} trials, excluded {len(excl)}")
