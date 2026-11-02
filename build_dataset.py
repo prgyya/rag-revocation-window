@@ -1,11 +1,10 @@
 import argparse, csv, json, math, os, random, email
 from email import policy
 
-try:
-    from faker import Faker
-    FAKER = True
-except ImportError:  # offline fallback so the script still runs; install faker for better names
-    FAKER = False
+# Faker is required: without it the script would generate a different dataset, and results
+# from different machines would no longer be comparable. Install it with: pip install faker
+from faker import Faker
+FAKER = True
 
 DEPARTMENTS = ["Engineering", "Finance", "Legal", "HR", "Sales", "Marketing",
                "Operations", "Support", "Research", "Compliance"]
@@ -209,8 +208,6 @@ def main():
 
     rng = random.Random(args.seed)
     os.makedirs(args.out, exist_ok=True)
-    if not FAKER:
-        print("[note] 'faker' not installed -> using simple fallback names (pip install faker)")
 
     users, groups, members = make_org(args.users, rng)
 
