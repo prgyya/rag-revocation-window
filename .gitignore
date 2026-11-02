@@ -220,3 +220,10 @@ __marimo__/
 .streamlit/secrets.toml
 data_*/
 results_test*/
+
+# Large raw text sources for build_dataset.py (--source enron / dir)
+maildir/
+texts/
+
+# Scratch output of the optional checks in CHANGES.md
+pilot_check/
