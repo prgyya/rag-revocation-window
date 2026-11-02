@@ -18,7 +18,7 @@ CTX_K = 5       # chunks that are put into the LLM context
 TRIAL_HEADER = ["trial_id", "mode", "config", "t_revocation", "baseline_ok", "status"]
 ATTEMPT_HEADER = ["trial_id", "attempt_ts", "protected_returned", "protected_in_prompt",
                   "http_status", "latency_ms", "ref_returned", "ref_in_prompt",
-                  "ctx_chunks", "ctx_chars"]
+                  "ctx_chunks", "ctx_chars", "relevant"]
 
 
 def doc_filter(doc_id):
@@ -48,15 +48,19 @@ def query_vector(base, pool, min_alpha):
 class ProbeResult(tuple):
     """(t, w_got, w_ctx, r_got, r_ctx, status, ms) plus how much unauthorized data the
     workload search put into the context: .n chunks of the protected document, .chars of text."""
-    def __new__(cls, base, n=0, chars=0):
+    def __new__(cls, base, n=0, chars=0, relevant=1):
         obj = super().__new__(cls, base)
-        obj.n, obj.chars = n, chars
+        obj.n, obj.chars, obj.relevant = n, chars, relevant
         return obj
 
 
-def make_prober(client, collection, flt, doc, vec, pool, min_alpha, context_fn, on_error=None):
+def make_prober(client, collection, flt, doc, vec, pool, min_alpha, context_fn, on_error=None, p_relevant=1.0):
     """Returns probe(vary=True) -> (t, w_got, w_ctx, r_got, r_ctx, status, ms).
-    w_* = workload search, r_* = reference search."""
+    w_* = workload search, r_* = reference search.
+
+    A real user's questions are mostly NOT about the revoked document. So with probability
+    p_relevant the workload search is about it (relevance drawn from min_alpha..1), and
+    otherwise it is an unrelated question (a random other chunk). `relevant` records which."""
 
     def flags(hits):
         got = int(any(h.payload["doc_id"] == doc for h in hits))
@@ -65,10 +69,16 @@ def make_prober(client, collection, flt, doc, vec, pool, min_alpha, context_fn, 
 
     def probe(vary=True):
         t, p0 = time.time(), time.perf_counter()
+        relevant = 1
         try:
             ref = client.query_points(collection, query=vec, query_filter=flt, limit=FETCH).points
             r_got, r_ctx, _, _ = flags(ref)
-            q = query_vector(vec, pool, min_alpha) if vary else vec
+            if not vary:
+                q, relevant = vec, 1
+            elif random.random() < p_relevant:
+                q, relevant = query_vector(vec, pool, min_alpha), 1
+            else:
+                q, relevant = random.choice(pool).tolist(), 0
             work = client.query_points(collection, query=q, query_filter=flt, limit=FETCH).points
             w_got, w_ctx, w_n, w_chars = flags(work)
             status = 200
@@ -78,14 +88,14 @@ def make_prober(client, collection, flt, doc, vec, pool, min_alpha, context_fn, 
             w_got = w_ctx = r_got = r_ctx = w_n = w_chars = 0
             status = 500
         return ProbeResult((t, w_got, w_ctx, r_got, r_ctx, status, (time.perf_counter() - p0) * 1000),
-                           w_n, w_chars)
+                           w_n, w_chars, relevant)
 
     return probe
 
 
 def attempt_row(trial_id, p):
     t, w_got, w_ctx, r_got, r_ctx, status, ms = p
-    return [trial_id, t, w_got, w_ctx, status, round(ms, 1), r_got, r_ctx, p.n, p.chars]
+    return [trial_id, t, w_got, w_ctx, status, round(ms, 1), r_got, r_ctx, p.n, p.chars, p.relevant]
 
 
 def final_blocked_run(attempts):
@@ -155,7 +165,8 @@ def run_trial(a, conn, client, pool):
         key="allowed_principals", match=models.MatchAny(any=principals_for(conn, user)))])
     vec = client.scroll(a.collection, scroll_filter=doc_filter(doc), limit=1,
                         with_vectors=True)[0][0].vector
-    probe = make_prober(client, a.collection, flt, doc, vec, pool, a.min_alpha, build_context)
+    probe = make_prober(client, a.collection, flt, doc, vec, pool, a.min_alpha, build_context,
+                        p_relevant=a.p_relevant)
 
     _, _, _, r_got, r_ctx, status, _ = probe(vary=False)
     if not (r_ctx == 1 and status == 200):                    # baseline failed
@@ -214,6 +225,8 @@ def main():
                     help="observation window in seconds after revocation (default: interval + 15)")
     ap.add_argument("--min-alpha", type=float, default=0.3,
                     help="lowest relevance of a workload search to the protected document (0-1)")
+    ap.add_argument("--p-relevant", type=float, default=0.5,
+                    help="share of workload searches that are about the protected document (rest are unrelated)")
     ap.add_argument("--collection", default="chunks_1k")
     ap.add_argument("--out", default="results")
     a = ap.parse_args()
