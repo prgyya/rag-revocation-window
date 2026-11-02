@@ -45,7 +45,8 @@ def run_trial(a, conn, client, pool):
         key="allowed_principals", match=models.MatchAny(any=principals_for(conn, user)))])
     vec = client.scroll(a.collection, scroll_filter=doc_filter(doc), limit=1,
                         with_vectors=True)[0][0].vector
-    probe = make_prober(client, a.collection, flt, doc, vec, pool, a.min_alpha, build_context)
+    probe = make_prober(client, a.collection, flt, doc, vec, pool, a.min_alpha, build_context,
+                        p_relevant=a.p_relevant)
 
     _, _, _, r_got, r_ctx, status, _ = probe(vary=False)
     if not (r_ctx == 1 and status == 200):
@@ -99,10 +100,12 @@ def run_trial(a, conn, client, pool):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--trials", type=int, default=1)
-    ap.add_argument("--window", type=int, default=15, help="observation window, seconds")
+    ap.add_argument("--window", type=int, default=35, help="observation window, seconds")
     ap.add_argument("--probe-ms", type=int, default=10, help="target gap between probes")
     ap.add_argument("--min-alpha", type=float, default=0.3,
                     help="lowest relevance of a workload search to the protected document (0-1)")
+    ap.add_argument("--p-relevant", type=float, default=0.5,
+                    help="share of workload searches that are about the protected document (rest are unrelated)")
     ap.add_argument("--collection", default="chunks_1k")
     ap.add_argument("--out", default="results")
     ap.add_argument("--no-worker", action="store_true",
