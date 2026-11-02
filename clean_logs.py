@@ -7,6 +7,7 @@ import pandas as pd
 #   rpt_ctx_s   : time until the chunk stops reaching the LLM CONTEXT        (goes with CER)
 # For periodic/event there is no gate, so the two coincide. For query-time/hybrid the index
 # stays stale on purpose, so rpt_index is censored while rpt_ctx is ~0.
+# URR-side interval measures end at index enforcement; CER-side ones end at context enforcement.
 
 
 def stable_block_time(g, k, col="protected_returned"):
@@ -38,6 +39,8 @@ def main():
     ap.add_argument("--max-error-rate", type=float, default=0.05)
     ap.add_argument("--qpm", type=float, default=1.0,
                     help="ASSUMED queries per minute from the revoked user (for expected exposures)")
+    ap.add_argument("--share-relevant", type=float, default=0.1,
+                    help="ASSUMED share of those queries that are about the revoked document")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
@@ -100,23 +103,33 @@ def main():
             drop([tid], "negative RPT (clock/order problem)"); continue
 
         w = g[g["attempt_ts"] <= t_rev + args.window]
-        # the OPEN window = from revocation until the chunk stops reaching the context
-        t_end = np.inf if np.isnan(t_ctx) else t_ctx
-        o = w[w["attempt_ts"] < t_end]
-        cer_open = o["protected_in_prompt"].mean() if len(o) else np.nan
-        exp_exp = np.nan if np.isnan(rpt_ctx) else (args.qpm / 60.0) * rpt_ctx * (0.0 if np.isnan(cer_open) else cer_open)
+        has_rel = "relevant" in w.columns
+
+        def interval(t_stop, col):
+            """Probes from revocation until t_stop: all of them, and only the ones about the
+            protected document. Returns the probes, then counts (n, hits, n_rel, hits_rel)."""
+            o = w[w["attempt_ts"] < t_stop]
+            r = o[o["relevant"] == 1] if has_rel else o
+            return o, len(o), int(o[col].sum()), len(r), int(r[col].sum())
+
+        # The URR side ends when the INDEX stops returning the chunk (never, in the gate modes);
+        # the CER side ends when the chunk stops reaching the LLM CONTEXT.
+        o_idx, n_idx, k_urr, nr_idx, kr_urr = interval(np.inf if np.isnan(t_idx) else t_idx, "protected_returned")
+        o_ctx, n_ctx, k_cer, nr_ctx, kr_cer = interval(np.inf if np.isnan(t_ctx) else t_ctx, "protected_in_prompt")
+        div = lambda a_, b_: a_ / b_ if b_ else np.nan
         rows.append({
             "trial_id": tid,
             "rpt_index_s": rpt_idx, "censored_index": bool(np.isnan(rpt_idx)),
             "rpt_ctx_s": rpt_ctx, "censored_ctx": bool(np.isnan(rpt_ctx)),
             "urr": w["protected_returned"].mean() if len(w) else np.nan,
             "cer": w["protected_in_prompt"].mean() if len(w) else np.nan,
-            "urr_interval": o["protected_returned"].mean() if len(o) else np.nan,
-            "cer_interval": cer_open,
-            "leaked_probes": int(o["protected_returned"].sum()),
-            "ctx_chunks": o["ctx_chunks"].mean() if ("ctx_chunks" in o.columns and len(o)) else np.nan,
-            "ctx_chars": o["ctx_chars"].mean() if ("ctx_chars" in o.columns and len(o)) else np.nan,
-            "exp_exposures": exp_exp,
+            "urr_interval": div(k_urr, n_idx), "cer_interval": div(k_cer, n_ctx),
+            "urr_rel_interval": div(kr_urr, nr_idx), "cer_rel_interval": div(kr_cer, nr_ctx),
+            "leaked_probes": k_urr,
+            "n_idx": n_idx, "k_urr": k_urr, "nr_idx": nr_idx, "kr_urr": kr_urr,
+            "n_ctx": n_ctx, "k_cer": k_cer, "nr_ctx": nr_ctx, "kr_cer": kr_cer,
+            "sum_chunks": float(o_ctx["ctx_chunks"].sum()) if "ctx_chunks" in o_ctx.columns else np.nan,
+            "sum_chars": float(o_ctx["ctx_chars"].sum()) if "ctx_chars" in o_ctx.columns else np.nan,
             "lat_mean": w["latency_ms"].mean() if len(w) else np.nan,
             "lat_p95": w["latency_ms"].quantile(0.95) if len(w) else np.nan,
             "n_attempts": len(w), "error_rate": err,
@@ -133,6 +146,7 @@ def main():
 
     # 5. summary. Outliers are KEPT (tail values are the finding); censored are counted, not hidden
     def q(p): return lambda s: s.quantile(p)
+    def tot(s): return s.sum(min_count=1)
     summ = res.groupby(["mode", "config"]).agg(
         trials=("trial_id", "count"),
         cens_idx=("censored_index", "sum"), cens_ctx=("censored_ctx", "sum"),
@@ -140,11 +154,25 @@ def main():
         ctx_mean=("rpt_ctx_s", "mean"), ctx_median=("rpt_ctx_s", "median"),
         ctx_p95=("rpt_ctx_s", q(0.95)), ctx_p99=("rpt_ctx_s", q(0.99)), ctx_max=("rpt_ctx_s", "max"),
         urr_mean=("urr", "mean"), cer_mean=("cer", "mean"),
-        urr_interval=("urr_interval", "mean"), cer_interval=("cer_interval", "mean"),
-        leaked_probes=("leaked_probes", "mean"),
-        ctx_chunks=("ctx_chunks", "mean"), ctx_chars=("ctx_chars", "mean"),
-        exp_exposures=("exp_exposures", "mean"),
-        lat_mean=("lat_mean", "mean"), lat_p95=("lat_p95", "mean")).reset_index()
+        leaked_probes=("k_urr", "mean"),
+        lat_mean=("lat_mean", "mean"), lat_p95=("lat_p95", "mean"),
+        _n_idx=("n_idx", "sum"), _k_urr=("k_urr", "sum"), _nr_idx=("nr_idx", "sum"), _kr_urr=("kr_urr", "sum"),
+        _n_ctx=("n_ctx", "sum"), _k_cer=("k_cer", "sum"), _nr_ctx=("nr_ctx", "sum"), _kr_cer=("kr_cer", "sum"),
+        _chunks=("sum_chunks", tot), _chars=("sum_chars", tot)).reset_index()
+    # Interval rates are POOLED over all probes of the mode (a trial with 1 probe must not weigh
+    # as much as one with 300; very short intervals, like event mode, make per-trial ratios noisy).
+    nz = lambda c: summ[c].replace(0, np.nan)
+    summ["urr_interval"] = summ["_k_urr"] / nz("_n_idx")
+    summ["cer_interval"] = summ["_k_cer"] / nz("_n_ctx")
+    summ["urr_rel"] = summ["_kr_urr"] / nz("_nr_idx")
+    summ["cer_rel"] = summ["_kr_cer"] / nz("_nr_ctx")
+    summ["ctx_chunks"] = summ["_chunks"] / nz("_n_ctx")
+    summ["ctx_chars"] = summ["_chars"] / nz("_n_ctx")
+    # Expected exposures = queries/s x share about the document x mean RPT x chance it reaches the context.
+    # If no relevant probe fell inside any interval, the chance is unknown: use 1 (an upper bound) and flag it.
+    summ["exp_upper_bound"] = summ["cer_rel"].isna() & summ["ctx_mean"].notna()
+    summ["exp_exposures"] = (args.qpm / 60.0) * args.share_relevant * summ["ctx_mean"] * summ["cer_rel"].fillna(1.0)
+    summ = summ.drop(columns=[c for c in summ.columns if c.startswith("_")])
     summ.to_csv(f"{args.out}/summary.csv", index=False)
 
     print(f"kept {len(res)} trials, excluded {len(excl)}")
