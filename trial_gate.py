@@ -40,7 +40,8 @@ def run_trial(a, conn, client, pool):
         return [h for h in hits if h.payload["doc_id"] in ok][:CTX_K]
 
     probe = make_prober(client, a.collection, flt if a.mode == "hybrid" else None, doc, vec,
-                        pool, a.min_alpha, gate_context, on_error=conn.rollback)
+                        pool, a.min_alpha, gate_context, on_error=conn.rollback,
+                        p_relevant=a.p_relevant)
 
     _, _, _, r_got, r_ctx, status, _ = probe(vary=False)
     if not (r_ctx == 1 and status == 200):
@@ -83,10 +84,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["query-time", "hybrid"], required=True)
     ap.add_argument("--trials", type=int, default=1)
-    ap.add_argument("--window", type=int, default=5, help="observation window, seconds")
+    ap.add_argument("--window", type=int, default=35, help="observation window, seconds")
     ap.add_argument("--probe-ms", type=int, default=10, help="target gap between probes")
     ap.add_argument("--min-alpha", type=float, default=0.3,
                     help="lowest relevance of a workload search to the protected document (0-1)")
+    ap.add_argument("--p-relevant", type=float, default=0.5,
+                    help="share of workload searches that are about the protected document (rest are unrelated)")
     ap.add_argument("--collection", default="chunks_1k")
     ap.add_argument("--out", default="results_gate")
     a = ap.parse_args()
