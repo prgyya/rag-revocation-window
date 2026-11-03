@@ -1,0 +1,6 @@
+kept 10 trials, excluded 0
+no exclusions
+stale-state context rate: 0.902 (pooled from periodic/10s)
+    mode config  trials  cens_ctx  km_median  km_p95  ctx_max  urr_interval  cer_interval  urr_rel  cer_rel  rel_probes_ctx  lat_mean  exp_exposures
+periodic    10s      10         0      4.006   9.113    9.113         0.491         0.472    0.938    0.902             224      7.81          0.007
+  periodic/10s: enforced in every trial; exposures measured

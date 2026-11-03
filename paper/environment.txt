@@ -1,0 +1,6 @@
+date: Tue Nov  3 18:33:41 UTC 2026
+commit: 335823a Move pilot results into pilot/
+Python 3.14.2
+machine: 2 cores, 7.8Gi RAM
+postgres (PostgreSQL) 16.15 (Debian 16.15-1.pgdg13+2)
+qdrant 1.20.0

@@ -1,0 +1,17 @@
+check,rows_before,rows_after,rows_affected,action
+duplicate user_id,1000,1000,0,kept first
+users with missing department/role,1000,1000,0,dropped
+duplicate memberships,2547,2547,0,dropped
+memberships with unknown user/group,2547,2547,0,dropped
+duplicate doc_id,2500,2500,0,kept first
+chunk text whitespace normalised,4897,4897,0,extra spaces/newlines collapsed
+chunks shorter than 20 words / empty,4897,4897,0,dropped
+duplicate chunk_id,4897,4897,0,kept first
+duplicate chunk text,4897,4897,0,kept first
+chunks whose document does not exist,4897,4897,0,dropped
+documents left with no chunks,2500,2500,0,dropped; n_chunks recalculated
+duplicate ACL rows,3501,3501,0,dropped
+ACL rows for unknown document,3501,3501,0,dropped
+ACL rows for unknown user/group,3501,3501,0,dropped
+documents with no ACL,2500,2500,0,dropped (with their chunks)
+chunk access list differs from ACL table,4897,4897,0,chunk list re-synced from doc_acl.csv

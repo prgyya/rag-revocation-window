@@ -1,7 +1,7 @@
 services:
   postgres:
     # Pin the exact version you ran the final experiments with (see CHANGES.md, step 3)
-    image: postgres:16
+    image: postgres:16.15
     container_name: rag_postgres
     environment:
       POSTGRES_USER: rag
@@ -18,7 +18,7 @@ services:
 
   qdrant:
     # Pin the exact version you ran the final experiments with (see CHANGES.md, step 3)
-    image: qdrant/qdrant
+    image: qdrant/qdrant:v1.20.0
     container_name: rag_qdrant
     environment:
       QDRANT__TELEMETRY_DISABLED: "true"     # isolated test environment: no usage data leaves the machine

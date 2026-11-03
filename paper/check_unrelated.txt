@@ -1,0 +1,7 @@
+         protected_returned       protected_in_prompt      
+                       mean count                mean count
+relevant                                                   
+0                     0.014   210               0.014   210
+1                     0.938   224               0.902   224
+
+unrelated questions that returned the revoked document: 1.4% of 210 probes -> OK, keep the data
