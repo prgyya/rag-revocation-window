@@ -1,0 +1,55 @@
+configuration,queries per minute,share about the document,expected exposures
+periodic (20s sync),0.2,0.05,0.001508
+periodic (20s sync),0.2,0.1,0.003016
+periodic (20s sync),0.2,0.3,0.009047
+periodic (20s sync),1.0,0.05,0.007539
+periodic (20s sync),1.0,0.1,0.015078
+periodic (20s sync),1.0,0.3,0.045235
+periodic (20s sync),5.0,0.05,0.037696
+periodic (20s sync),5.0,0.1,0.075392
+periodic (20s sync),5.0,0.3,0.226176
+event,0.2,0.05,3e-06
+event,0.2,0.1,6e-06
+event,0.2,0.3,1.7e-05
+event,1.0,0.05,1.4e-05
+event,1.0,0.1,2.8e-05
+event,1.0,0.3,8.4e-05
+event,5.0,0.05,7e-05
+event,5.0,0.1,0.00014
+event,5.0,0.3,0.00042
+control (no worker),0.2,0.05,unbounded
+control (no worker),0.2,0.1,unbounded
+control (no worker),0.2,0.3,unbounded
+control (no worker),1.0,0.05,unbounded
+control (no worker),1.0,0.1,unbounded
+control (no worker),1.0,0.3,unbounded
+control (no worker),5.0,0.05,unbounded
+control (no worker),5.0,0.1,unbounded
+control (no worker),5.0,0.3,unbounded
+query-time,0.2,0.05,0.0
+query-time,0.2,0.1,0.0
+query-time,0.2,0.3,0.0
+query-time,1.0,0.05,0.0
+query-time,1.0,0.1,0.0
+query-time,1.0,0.3,0.0
+query-time,5.0,0.05,0.0
+query-time,5.0,0.1,0.0
+query-time,5.0,0.3,0.0
+query-time (cache 10s),0.2,0.05,0.000729
+query-time (cache 10s),0.2,0.1,0.001457
+query-time (cache 10s),0.2,0.3,0.004372
+query-time (cache 10s),1.0,0.05,0.003643
+query-time (cache 10s),1.0,0.1,0.007287
+query-time (cache 10s),1.0,0.3,0.021861
+query-time (cache 10s),5.0,0.05,0.018217
+query-time (cache 10s),5.0,0.1,0.036435
+query-time (cache 10s),5.0,0.3,0.109304
+hybrid,0.2,0.05,0.0
+hybrid,0.2,0.1,0.0
+hybrid,0.2,0.3,0.0
+hybrid,1.0,0.05,0.0
+hybrid,1.0,0.1,0.0
+hybrid,1.0,0.3,0.0
+hybrid,5.0,0.05,0.0
+hybrid,5.0,0.1,0.0
+hybrid,5.0,0.3,0.0

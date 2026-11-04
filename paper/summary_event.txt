@@ -1,0 +1,9 @@
+kept 32 trials, excluded 3
+reason
+warm-up trial    3
+stale-state context rate: 0.884 (pooled from event/no-worker)
+ mode    config  trials  cens_ctx  km_median  km_p95  ctx_max  urr_interval  cer_interval  urr_rel  cer_rel  rel_probes_ctx  lat_mean  exp_exposures
+event no-worker       5         5        inf     inf      NaN         0.459         0.442    0.917    0.884            7675     9.953            inf
+event    notify      27         0      0.014   0.051    0.052         0.194         0.194    0.462    0.462              13     9.870            0.0
+  event/no-worker: never enforced (> 35 s window); exposures unbounded: revocation never enforced
+  event/notify: enforced in every trial; exposures estimated: window below probe resolution, stale-state rate 0.884

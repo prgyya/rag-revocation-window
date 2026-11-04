@@ -1,0 +1,7 @@
+configuration,trials,not enforced,RPT median (KM),RPT p95 (KM),RPT max,RPT mean [95% CI],"index exposure, relevant queries [95% CI]","context exposure, relevant queries [95% CI]",probe latency mean (ms),expected exposures per revocation,basis
+periodic (20s sync),27,0,9.92 s,19.13 s,20.04 s,"10.32 s [7.95 s, 12.77 s]","0.912 [0.890, 0.937]","0.877 [0.855, 0.904]",9.7,0.015,measured
+event,27,0,14 ms,51 ms,52 ms,"19 ms [15 ms, 24 ms]","0.462 [0.200, 0.733]",too few probes to measure (13); see basis,9.9,2.8e-05,"estimated: window below probe resolution, stale-state rate 0.884"
+control (no worker),5,5,not reached,not reached,never enforced,> 35.00 s (never enforced),"0.917 [0.896, 0.947]","0.884 [0.861, 0.916]",10.0,unbounded,unbounded: revocation never enforced
+query-time,27,0,0 ms,0 ms,0 ms,"0 ms [0 ms, 0 ms]","0.925 [0.914, 0.934]",0 (blocked from the first probe),12.5,0,measured (blocked from the first probe)
+query-time (cache 10s),27,0,4.98 s,9.04 s,9.70 s,"4.88 s [3.89 s, 5.83 s]","0.916 [0.901, 0.929]","0.897 [0.881, 0.912]",9.9,0.0073,measured
+hybrid,27,0,0 ms,0 ms,0 ms,"0 ms [0 ms, 0 ms]","0.933 [0.922, 0.944]",0 (blocked from the first probe),12.8,0,measured (blocked from the first probe)

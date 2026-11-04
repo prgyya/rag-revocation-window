@@ -1,0 +1,11 @@
+kept 81 trials, excluded 9
+reason
+warm-up trial    9
+stale-state context rate: not available in this folder
+      mode      config  trials  cens_ctx  km_median  km_p95  ctx_max  urr_interval  cer_interval  urr_rel  cer_rel  rel_probes_ctx  lat_mean  exp_exposures
+    hybrid        gate      27         0      0.000   0.000    0.000         0.475           NaN    0.933      NaN               0    12.827          0.000
+query-time        gate      27         0      0.000   0.000    0.000         0.469           NaN    0.925      NaN               0    12.549          0.000
+query-time gate-ttl10s      27         0      4.983   9.043    9.698         0.463         0.448    0.916    0.897            5764     9.889          0.007
+  hybrid/gate: enforced in every trial; exposures measured (blocked from the first probe)
+  query-time/gate: enforced in every trial; exposures measured (blocked from the first probe)
+  query-time/gate-ttl10s: enforced in every trial; exposures measured

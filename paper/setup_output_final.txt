@@ -1,0 +1,1575 @@
+== 1/7 installing Python libraries
+Requirement already satisfied: annotated-doc==0.0.5 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 1)) (0.0.5)
+Requirement already satisfied: annotated-types==0.8.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 2)) (0.8.0)
+Requirement already satisfied: anyio==4.15.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 3)) (4.15.1)
+Requirement already satisfied: argon2-cffi==25.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 4)) (25.1.0)
+Requirement already satisfied: argon2-cffi-bindings==26.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 5)) (26.1.0)
+Requirement already satisfied: arrow==1.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 6)) (1.4.0)
+Requirement already satisfied: asttokens==3.0.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 7)) (3.0.2)
+Requirement already satisfied: async-lru==2.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 8)) (2.4.0)
+Requirement already satisfied: attrs==26.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 9)) (26.1.0)
+Requirement already satisfied: babel==2.18.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 10)) (2.18.0)
+Requirement already satisfied: beautifulsoup4==4.15.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 11)) (4.15.0)
+Requirement already satisfied: bleach==6.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 12)) (6.4.0)
+Requirement already satisfied: certifi==2026.10.23 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 13)) (2026.10.23)
+Requirement already satisfied: cffi==2.1.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 14)) (2.1.1)
+Requirement already satisfied: charset-normalizer==3.5.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 15)) (3.5.2)
+Requirement already satisfied: click==8.5.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 16)) (8.5.0)
+Requirement already satisfied: cloudpickle==3.1.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 17)) (3.1.2)
+Requirement already satisfied: colorama==0.4.6 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 18)) (0.4.6)
+Requirement already satisfied: comm==0.2.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 19)) (0.2.3)
+Requirement already satisfied: contourpy==1.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 20)) (1.4.0)
+Requirement already satisfied: cuda-bindings==13.4.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 21)) (13.4.4)
+Requirement already satisfied: cuda-pathfinder==1.8.5 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 22)) (1.8.5)
+Requirement already satisfied: cuda-toolkit==13.2.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 23)) (13.2.2)
+Requirement already satisfied: cycler==0.12.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 24)) (0.12.1)
+Requirement already satisfied: debugpy==1.8.22 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 25)) (1.8.22)
+Requirement already satisfied: defusedxml==0.7.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 26)) (0.7.1)
+Requirement already satisfied: executing==2.3.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 27)) (2.3.0)
+Requirement already satisfied: Faker==40.44.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 28)) (40.44.0)
+Requirement already satisfied: fastjsonschema==2.22.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 29)) (2.22.2)
+Collecting filelock==4.2.6 (from -r requirements.lock (line 30))
+  Downloading filelock-4.2.6-py3-none-any.whl.metadata (2.0 kB)
+Requirement already satisfied: fonttools==4.68.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 31)) (4.68.0)
+Requirement already satisfied: fqdn==1.6.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 32)) (1.6.0)
+Requirement already satisfied: fsspec==2026.9.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 33)) (2026.9.0)
+Requirement already satisfied: gitdb==4.0.12 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 34)) (4.0.12)
+Requirement already satisfied: GitPython==3.2.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 35)) (3.2.1)
+Requirement already satisfied: grpcio==1.85.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 36)) (1.85.1)
+Requirement already satisfied: h11==0.16.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 37)) (0.16.0)
+Requirement already satisfied: h2==4.4.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 38)) (4.4.1)
+Requirement already satisfied: hf-xet==1.8.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 39)) (1.8.0)
+Requirement already satisfied: hpack==4.2.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 40)) (4.2.0)
+Requirement already satisfied: httpcore==1.0.9 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 41)) (1.0.9)
+Requirement already satisfied: httpcore2==2.16.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 42)) (2.16.0)
+Requirement already satisfied: httpx==0.28.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 43)) (0.28.1)
+Requirement already satisfied: httpx2==2.16.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 44)) (2.16.0)
+Requirement already satisfied: huggingface_hub==2.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 45)) (2.4.0)
+Requirement already satisfied: hyperframe==6.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 46)) (6.1.0)
+Requirement already satisfied: idna==3.20 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 47)) (3.20)
+Requirement already satisfied: ipykernel==7.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 48)) (7.4.0)
+Requirement already satisfied: ipython==9.17.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 49)) (9.17.1)
+Requirement already satisfied: ipython_pygments_lexers==1.1.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 50)) (1.1.1)
+Requirement already satisfied: isoduration==20.11.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 51)) (20.11.0)
+Requirement already satisfied: jedi==0.20.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 52)) (0.20.1)
+Requirement already satisfied: Jinja2==3.1.6 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 53)) (3.1.6)
+Requirement already satisfied: joblib==1.6.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 54)) (1.6.0)
+Requirement already satisfied: json5==0.17.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 55)) (0.17.3)
+Requirement already satisfied: jsonpointer==3.6 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 56)) (3.6)
+Requirement already satisfied: jsonschema==4.26.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 57)) (4.26.0)
+Requirement already satisfied: jsonschema-specifications==2025.9.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 58)) (2025.9.1)
+Requirement already satisfied: jupyter-events==0.12.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 59)) (0.12.1)
+Requirement already satisfied: jupyter-lsp==2.3.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 60)) (2.3.1)
+Requirement already satisfied: jupyter_builder==1.2.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 61)) (1.2.4)
+Requirement already satisfied: jupyter_client==8.10.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 62)) (8.10.0)
+Requirement already satisfied: jupyter_core==5.9.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 63)) (5.9.1)
+Requirement already satisfied: jupyter_server==2.21.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 64)) (2.21.1)
+Requirement already satisfied: jupyter_server_terminals==0.5.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 65)) (0.5.4)
+Requirement already satisfied: jupyterlab==4.6.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 66)) (4.6.4)
+Requirement already satisfied: jupyterlab-git-core==0.55.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 67)) (0.55.0)
+Requirement already satisfied: jupyterlab_git==0.55.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 68)) (0.55.0)
+Requirement already satisfied: jupyterlab_pygments==0.3.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 69)) (0.3.0)
+Requirement already satisfied: jupyterlab_server==2.28.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 70)) (2.28.1)
+Requirement already satisfied: kiwisolver==1.5.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 71)) (1.5.1)
+Requirement already satisfied: lark==1.3.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 72)) (1.3.1)
+Requirement already satisfied: markdown-it-py==4.2.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 73)) (4.2.0)
+Requirement already satisfied: MarkupSafe==3.0.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 74)) (3.0.4)
+Requirement already satisfied: matplotlib==3.11.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 75)) (3.11.2)
+Requirement already satisfied: matplotlib-inline==0.2.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 76)) (0.2.2)
+Requirement already satisfied: mdurl==0.1.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 77)) (0.1.2)
+Requirement already satisfied: mistune==3.4.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 78)) (3.4.0)
+Requirement already satisfied: mpmath==1.3.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 79)) (1.3.0)
+Requirement already satisfied: narwhals==2.28.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 80)) (2.28.0)
+Requirement already satisfied: nbclient==0.11.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 81)) (0.11.0)
+Requirement already satisfied: nbconvert==7.17.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 82)) (7.17.2)
+Requirement already satisfied: nbdime==4.0.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 83)) (4.0.4)
+Requirement already satisfied: nbformat==5.11.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 84)) (5.11.1)
+Requirement already satisfied: nest-asyncio2==1.7.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 85)) (1.7.4)
+Requirement already satisfied: networkx==3.7 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 86)) (3.7)
+Requirement already satisfied: notebook_shim==0.2.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 87)) (0.2.4)
+Requirement already satisfied: numpy==2.5.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 88)) (2.5.4)
+Requirement already satisfied: nvidia-cublas==13.4.1.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 89)) (13.4.1.3)
+Requirement already satisfied: nvidia-cuda-cccl==13.3.4.3.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 90)) (13.3.4.3.1)
+Requirement already satisfied: nvidia-cuda-cupti==13.2.86 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 91)) (13.2.86)
+Requirement already satisfied: nvidia-cuda-nvrtc==13.2.86 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 92)) (13.2.86)
+Requirement already satisfied: nvidia-cuda-runtime==13.2.86 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 93)) (13.2.86)
+Requirement already satisfied: nvidia-cudnn-cu13==9.26.0.51 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 94)) (9.26.0.51)
+Requirement already satisfied: nvidia-cufft==12.2.0.57 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 95)) (12.2.0.57)
+Requirement already satisfied: nvidia-cufile==1.17.1.22 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 96)) (1.17.1.22)
+Requirement already satisfied: nvidia-cusolver==12.2.0.11 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 97)) (12.2.0.11)
+Requirement already satisfied: nvidia-cusparse==12.7.10.12 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 98)) (12.7.10.12)
+Requirement already satisfied: nvidia-cusparselt-cu13==0.8.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 99)) (0.8.1)
+Requirement already satisfied: nvidia-nccl-cu13==2.30.7 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 100)) (2.30.7)
+Requirement already satisfied: nvidia-nvjitlink==13.4.92 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 101)) (13.4.92)
+Requirement already satisfied: nvidia-nvshmem-cu13==3.7.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 102)) (3.7.2)
+Requirement already satisfied: nvidia-nvtx==13.2.86 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 103)) (13.2.86)
+Requirement already satisfied: packaging==26.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 104)) (26.3)
+Requirement already satisfied: pandas==3.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 105)) (3.1.0)
+Requirement already satisfied: pandocfilters==1.5.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 106)) (1.5.1)
+Requirement already satisfied: parso==0.8.7 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 107)) (0.8.7)
+Requirement already satisfied: pexpect==4.9.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 108)) (4.9.0)
+Requirement already satisfied: pillow==13.0.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 109)) (13.0.0)
+Requirement already satisfied: platformdirs==4.14.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 110)) (4.14.0)
+Requirement already satisfied: portalocker==4.4.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 111)) (4.4.2)
+Requirement already satisfied: prometheus_client==0.26.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 112)) (0.26.0)
+Requirement already satisfied: prompt_toolkit==3.0.53 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 113)) (3.0.53)
+Requirement already satisfied: protobuf==7.36.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 114)) (7.36.2)
+Requirement already satisfied: psutil==7.2.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 115)) (7.2.2)
+Requirement already satisfied: psycopg2-binary==2.9.13 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 116)) (2.9.13)
+Requirement already satisfied: ptyprocess==0.7.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 117)) (0.7.0)
+Requirement already satisfied: pure_eval==0.2.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 118)) (0.2.4)
+Requirement already satisfied: pycparser==3.12 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 119)) (3.12)
+Requirement already satisfied: pydantic==2.14.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 120)) (2.14.2)
+Requirement already satisfied: pydantic_core==2.50.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 121)) (2.50.2)
+Requirement already satisfied: Pygments==2.21.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 122)) (2.21.0)
+Requirement already satisfied: pyparsing==3.3.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 123)) (3.3.3)
+Requirement already satisfied: python-dateutil==3.0.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 124)) (3.0.0)
+Requirement already satisfied: python-json-logger==4.2.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 125)) (4.2.0)
+Requirement already satisfied: PyYAML==6.0.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 126)) (6.0.3)
+Requirement already satisfied: pyzmq==27.2.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 127)) (27.2.0)
+Requirement already satisfied: qdrant-client==1.20.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 128)) (1.20.0)
+Requirement already satisfied: referencing==0.37.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 129)) (0.37.0)
+Requirement already satisfied: regex==2026.9.29 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 130)) (2026.9.29)
+Requirement already satisfied: requests==2.34.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 131)) (2.34.2)
+Requirement already satisfied: rfc3339-validator==0.1.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 132)) (0.1.4)
+Requirement already satisfied: rfc3986-validator==0.1.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 133)) (0.1.1)
+Requirement already satisfied: rfc3987-syntax==1.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 134)) (1.1.0)
+Requirement already satisfied: rich==15.0.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 135)) (15.0.0)
+Requirement already satisfied: rpds-py==2026.9.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 136)) (2026.9.1)
+Requirement already satisfied: safetensors==0.8.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 137)) (0.8.0)
+Requirement already satisfied: scikit-learn==1.9.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 138)) (1.9.1)
+Requirement already satisfied: scipy==1.18.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 139)) (1.18.1)
+Requirement already satisfied: Send2Trash==2.1.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 140)) (2.1.0)
+Requirement already satisfied: sentence-transformers==6.2.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 141)) (6.2.0)
+Requirement already satisfied: setuptools==84.2.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 142)) (84.2.1)
+Requirement already satisfied: shellingham==1.5.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 143)) (1.5.4)
+Requirement already satisfied: six==1.17.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 144)) (1.17.0)
+Requirement already satisfied: smmap==5.0.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 145)) (5.0.3)
+Requirement already satisfied: soupsieve==3.0.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 146)) (3.0.4)
+Requirement already satisfied: stack-data==0.6.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 147)) (0.6.3)
+Requirement already satisfied: sympy==1.14.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 148)) (1.14.0)
+Requirement already satisfied: terminado==0.18.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 149)) (0.18.1)
+Requirement already satisfied: threadpoolctl==3.7.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 150)) (3.7.0)
+Requirement already satisfied: tinycss2==1.5.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 151)) (1.5.1)
+Requirement already satisfied: tokenizers==0.23.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 152)) (0.23.3)
+Requirement already satisfied: torch==2.15.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 153)) (2.15.0)
+Requirement already satisfied: tornado==6.6 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 154)) (6.6)
+Requirement already satisfied: tqdm==4.70.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 155)) (4.70.1)
+Requirement already satisfied: traitlets==5.16.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 156)) (5.16.1)
+Requirement already satisfied: transformers==5.22.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 157)) (5.22.1)
+Requirement already satisfied: triton==3.9.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 158)) (3.9.0)
+Requirement already satisfied: truststore==0.10.5 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 159)) (0.10.5)
+Requirement already satisfied: typer==0.27.3 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 160)) (0.27.3)
+Requirement already satisfied: typing-inspection==0.4.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 161)) (0.4.4)
+Requirement already satisfied: typing_extensions==4.16.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 162)) (4.16.0)
+Requirement already satisfied: tzdata==2026.6 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 163)) (2026.6)
+Requirement already satisfied: uri-template==1.3.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 164)) (1.3.0)
+Requirement already satisfied: urllib3==2.8.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 165)) (2.8.0)
+Requirement already satisfied: wcwidth==0.9.4 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 166)) (0.9.4)
+Requirement already satisfied: webcolors==25.10.0 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 167)) (25.10.0)
+Requirement already satisfied: webencodings==0.6.1 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 168)) (0.6.1)
+Requirement already satisfied: websocket-client==1.9.2 in /home/codespace/.local/lib/python3.14/site-packages (from -r requirements.lock (line 169)) (1.9.2)
+Downloading filelock-4.2.6-py3-none-any.whl (164 kB)
+Installing collected packages: filelock
+  Attempting uninstall: filelock
+    Found existing installation: filelock 4.2.7
+    Uninstalling filelock-4.2.7:
+      Successfully uninstalled filelock-4.2.7
+Successfully installed filelock-4.2.6
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: python3 -m pip install --upgrade pip
+== 2/7 starting Postgres and Qdrant
+ Image qdrant/qdrant:v1.20.0 Pulling 
+ Image postgres:16.15 Pulling 
+ 4f4fb700ef54 Pulling fs layer 0B
+ 4f4fb700ef54 Pulling fs layer 0B
+ f2be67225471 Pulling fs layer 0B
+ 4f4fb700ef54 Pulling fs layer 0B
+ 5df9a99116e9 Pulling fs layer 0B
+ 4f4fb700ef54 Pulling fs layer 0B
+ 4f4fb700ef54 Pulling fs layer 0B
+ 4f4fb700ef54 Pulling fs layer 0B
+ c7aee25c66bb Pulling fs layer 0B
+ 4f4fb700ef54 Pulling fs layer 0B
+ 2e5c280d7a27 Pulling fs layer 0B
+ a2020284dda8 Pulling fs layer 0B
+ a559964b7ae8 Pulling fs layer 0B
+ 01c8a71a87e5 Pulling fs layer 0B
+ 7ee6ed8de1c8 Pulling fs layer 0B
+ 6fc242d221a6 Pulling fs layer 0B
+ d06edb2e3f43 Pulling fs layer 0B
+ 3795839385bc Pulling fs layer 0B
+ cea4f0db46a6 Pulling fs layer 0B
+ 9b1a18996a22 Pulling fs layer 0B
+ fbc84e711712 Pulling fs layer 0B
+ 879995175298 Pulling fs layer 0B
+ d89068781d71 Pulling fs layer 0B
+ 5c4d204f6daa Pulling fs layer 0B
+ 28d8a96df569 Pulling fs layer 0B
+ b355a8fcc1d3 Pulling fs layer 0B
+ dc3e98153fd4 Pulling fs layer 0B
+ c60d02d02e9b Pulling fs layer 0B
+ 4f4fb700ef54 Download complete 0B
+ f2be67225471 Downloading 8.712MB
+ f2be67225471 Downloading 23.07MB
+ 5df9a99116e9 Downloading 873.8kB
+ f2be67225471 Downloading 29.84MB
+ 5df9a99116e9 Download complete 0B
+ c7aee25c66bb Download complete 0B
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 12.29kB
+ 2e5c280d7a27 Downloading 7.34MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ f2be67225471 Downloading 29.84MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 16.78MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ c60d02d02e9b Downloading 6.108kB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 4.194MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 27.26MB
+ a2020284dda8 Downloading 910B
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ c60d02d02e9b Downloading 6.108kB
+ c60d02d02e9b Downloading 6.108kB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 7ee6ed8de1c8 Downloading 186B
+ c60d02d02e9b Downloading 6.108kB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ 6fc242d221a6 Downloading 1.049MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ 7ee6ed8de1c8 Downloading 186B
+ 6fc242d221a6 Downloading 8.475MB
+ c60d02d02e9b Downloading 6.108kB
+ 6fc242d221a6 Downloading 16.78MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 5.243MB
+ 6fc242d221a6 Downloading 22.02MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 6fc242d221a6 Downloading 27.26MB
+ c60d02d02e9b Downloading 6.108kB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 6fc242d221a6 Downloading 29.86MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 3.146MB
+ 6fc242d221a6 Downloading 29.86MB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ c60d02d02e9b Downloading 6.108kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 3.146MB
+ c60d02d02e9b Downloading 6.108kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 11.93MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 22.09MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 32.51MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 38.8MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 46.95MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 56.62MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 68.16MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ 5c4d204f6daa Downloading 76.21MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 83.89MB
+ b355a8fcc1d3 Downloading 128B
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 93.32MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 103.8MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ f2be67225471 Downloading 29.84MB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 7ee6ed8de1c8 Downloading 186B
+ d06edb2e3f43 Downloading 1.17kB
+ 3795839385bc Downloading 6.443MB
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Downloading 29.86MB
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ c60d02d02e9b Downloading 6.108kB
+ 2e5c280d7a27 Downloading 34.66MB
+ a2020284dda8 Downloading 910B
+ a559964b7ae8 Downloading 8.455kB
+ 01c8a71a87e5 Downloading 7.113MB
+ 6fc242d221a6 Download complete 0B
+ fbc84e711712 Downloading 1.312MB
+ 5c4d204f6daa Downloading 113.2MB
+ b355a8fcc1d3 Downloading 128B
+ dc3e98153fd4 Downloading 167B
+ 2e5c280d7a27 Download complete 0B
+ a2020284dda8 Download complete 0B
+ a559964b7ae8 Download complete 0B
+ 01c8a71a87e5 Downloading 7.113MB
+ c60d02d02e9b Download complete 0B
+ f2be67225471 Download complete 0B
+ 7ee6ed8de1c8 Download complete 0B
+ d06edb2e3f43 Download complete 0B
+ 3795839385bc Download complete 0B
+ cea4f0db46a6 Downloading 1.257MB
+ 9b1a18996a22 Downloading 8.204MB
+ 879995175298 Downloading 116B
+ d89068781d71 Downloading 3.144kB
+ 28d8a96df569 Downloading 10.11kB
+ 6fc242d221a6 Extracting 1B
+ f2be67225471 Extracting 1B
+ dc3e98153fd4 Download complete 0B
+ cea4f0db46a6 Download complete 0B
+ 01c8a71a87e5 Download complete 0B
+ 9b1a18996a22 Download complete 0B
+ 879995175298 Download complete 0B
+ d89068781d71 Download complete 0B
+ 28d8a96df569 Download complete 0B
+ fbc84e711712 Download complete 0B
+ 5c4d204f6daa Download complete 0B
+ b355a8fcc1d3 Download complete 0B
+ 6fc242d221a6 Extracting 1B
+ f2be67225471 Extracting 1B
+ 6fc242d221a6 Extracting 1B
+ f2be67225471 Extracting 1B
+ 44136fa355b3 Downloading 2B
+ 6fc242d221a6 Extracting 1B
+ f2be67225471 Extracting 1B
+ 6fc242d221a6 Extracting 1B
+ 44136fa355b3 Download complete 0B
+ f2be67225471 Extracting 1B
+ 3d84f0dd5d33 Downloading 11.64kB
+ 6fc242d221a6 Extracting 1B
+ f2be67225471 Extracting 1B
+ 34abe417644f Downloading 4.194MB
+ 29544e8397e4 Downloading 2.097MB
+ 6fc242d221a6 Extracting 1B
+ 3d84f0dd5d33 Download complete 0B
+ f2be67225471 Extracting 1B
+ 34abe417644f Downloading 5.715MB
+ 6fc242d221a6 Extracting 1B
+ 29544e8397e4 Downloading 4.297MB
+ f2be67225471 Extracting 1B
+ 52b2ca0eb4bf Downloading 53.9kB
+ 34abe417644f Downloading 5.715MB
+ 6fc242d221a6 Extracting 1B
+ 29544e8397e4 Downloading 4.297MB
+ f2be67225471 Extracting 1B
+ 52b2ca0eb4bf Downloading 53.9kB
+ 34abe417644f Downloading 5.715MB
+ 6fc242d221a6 Extracting 1B
+ 29544e8397e4 Downloading 4.297MB
+ f2be67225471 Extracting 1B
+ 52b2ca0eb4bf Downloading 53.9kB
+ 34abe417644f Downloading 5.715MB
+ 29544e8397e4 Downloading 4.297MB
+ 6fc242d221a6 Extracting 1B
+ f2be67225471 Extracting 2B
+ 52b2ca0eb4bf Downloading 53.9kB
+ 34abe417644f Downloading 5.715MB
+ 6fc242d221a6 Extracting 2B
+ 29544e8397e4 Downloading 4.297MB
+ f2be67225471 Extracting 2B
+ 52b2ca0eb4bf Downloading 53.9kB
+ 34abe417644f Downloading 5.715MB
+ 29544e8397e4 Downloading 4.297MB
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 29544e8397e4 Downloading 4.297MB
+ 52b2ca0eb4bf Download complete 0B
+ 34abe417644f Download complete 0B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ 29544e8397e4 Download complete 0B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 2B
+ f2be67225471 Extracting 2B
+ 6fc242d221a6 Extracting 3B
+ f2be67225471 Extracting 3B
+ 6fc242d221a6 Extracting 3B
+ f2be67225471 Extracting 3B
+ 6fc242d221a6 Extracting 3B
+ f2be67225471 Extracting 3B
+ 6fc242d221a6 Extracting 3B
+ f2be67225471 Extracting 3B
+ 6fc242d221a6 Extracting 3B
+ f2be67225471 Extracting 3B
+ 6fc242d221a6 Extracting 3B
+ f2be67225471 Pull complete 0B
+ 6fc242d221a6 Pull complete 0B
+ 5df9a99116e9 Extracting 1B
+ d06edb2e3f43 Pull complete 0B
+ 3795839385bc Extracting 1B
+ 3795839385bc Extracting 1B
+ 5df9a99116e9 Extracting 1B
+ 3795839385bc Extracting 1B
+ 5df9a99116e9 Pull complete 0B
+ 3795839385bc Extracting 1B
+ 3795839385bc Pull complete 0B
+ cea4f0db46a6 Pull complete 0B
+ 2e5c280d7a27 Extracting 1B
+ 9b1a18996a22 Extracting 1B
+ 9b1a18996a22 Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 9b1a18996a22 Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 9b1a18996a22 Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 9b1a18996a22 Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 9b1a18996a22 Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 9b1a18996a22 Pull complete 0B
+ 2e5c280d7a27 Extracting 1B
+ fbc84e711712 Extracting 1B
+ 879995175298 Pull complete 0B
+ 2e5c280d7a27 Extracting 1B
+ fbc84e711712 Pull complete 0B
+ d89068781d71 Pull complete 0B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Extracting 1B
+ 5c4d204f6daa Extracting 1B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Extracting 2B
+ 2e5c280d7a27 Extracting 2B
+ 5c4d204f6daa Extracting 1B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Extracting 2B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Extracting 2B
+ 2e5c280d7a27 Extracting 2B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Extracting 2B
+ 5c4d204f6daa Extracting 1B
+ c7aee25c66bb Extracting 1B
+ 5c4d204f6daa Extracting 1B
+ 2e5c280d7a27 Pull complete 0B
+ c7aee25c66bb Pull complete 0B
+ a2020284dda8 Pull complete 0B
+ 5c4d204f6daa Extracting 2B
+ a559964b7ae8 Pull complete 0B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 2B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 1B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 2B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 2B
+ 01c8a71a87e5 Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 3B
+ 5c4d204f6daa Extracting 4B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 4B
+ 5c4d204f6daa Extracting 5B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 6B
+ 5c4d204f6daa Extracting 6B
+ 01c8a71a87e5 Extracting 5B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 5B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 7B
+ 01c8a71a87e5 Extracting 6B
+ 01c8a71a87e5 Extracting 6B
+ 5c4d204f6daa Extracting 8B
+ 01c8a71a87e5 Extracting 7B
+ 5c4d204f6daa Extracting 8B
+ 5c4d204f6daa Extracting 8B
+ 01c8a71a87e5 Extracting 7B
+ 5c4d204f6daa Extracting 8B
+ 01c8a71a87e5 Extracting 7B
+ 5c4d204f6daa Extracting 8B
+ 01c8a71a87e5 Extracting 7B
+ 5c4d204f6daa Extracting 8B
+ 01c8a71a87e5 Extracting 7B
+ 01c8a71a87e5 Extracting 8B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 9B
+ 5c4d204f6daa Extracting 9B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 8B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 10B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 10B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 10B
+ 01c8a71a87e5 Extracting 9B
+ 5c4d204f6daa Extracting 11B
+ 01c8a71a87e5 Extracting 10B
+ 5c4d204f6daa Extracting 11B
+ 01c8a71a87e5 Extracting 10B
+ 01c8a71a87e5 Extracting 10B
+ 5c4d204f6daa Extracting 11B
+ 01c8a71a87e5 Extracting 10B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 11B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 12B
+ 5c4d204f6daa Extracting 13B
+ 5c4d204f6daa Extracting 13B
+ 5c4d204f6daa Extracting 13B
+ 5c4d204f6daa Extracting 13B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 15B
+ 5c4d204f6daa Extracting 16B
+ 01c8a71a87e5 Pull complete 0B
+ 5c4d204f6daa Extracting 16B
+ 28d8a96df569 Pull complete 0B
+ 4f4fb700ef54 Pull complete 0B
+ 5c4d204f6daa Pull complete 0B
+ Image qdrant/qdrant:v1.20.0 Pulled 
+ c60d02d02e9b Pull complete 0B
+ dc3e98153fd4 Pull complete 0B
+ b355a8fcc1d3 Pull complete 0B
+ 7ee6ed8de1c8 Pull complete 0B
+ Image postgres:16.15 Pulled 
+ Volume rag-revocation-window_pgdata Creating 
+ Volume rag-revocation-window_pgdata Creating 
+ Volume rag-revocation-window_qdrant_data Creating 
+ Volume rag-revocation-window_qdrant_data Creating 
+ Network rag-revocation-window_default Creating 
+ Network rag-revocation-window_default Creating 
+ Volume rag-revocation-window_qdrant_data Created 
+ Volume rag-revocation-window_qdrant_data Created 
+ Volume rag-revocation-window_pgdata Created 
+ Volume rag-revocation-window_pgdata Created 
+ Network rag-revocation-window_default Created 
+ Network rag-revocation-window_default Created 
+ Container rag_qdrant Creating 
+ Container rag_postgres Creating 
+ Container rag_postgres Created 
+ Container rag_qdrant Created 
+ Container rag_qdrant Starting 
+ Container rag_postgres Starting 
+ Container rag_qdrant Started 
+ Container rag_postgres Started 
+== 3/7 generating and cleaning the dataset (seed 42, so everyone gets the same data)
+users=1000 groups=60 memberships=2547
+documents=2500 (restricted=1000) chunks=4897
+revocation rate=0.2083/min over 60 min -> 14 events
+written to ./data_1k/
+duplicate user_id                             affected: 0
+users with missing department/role            affected: 0
+duplicate memberships                         affected: 0
+memberships with unknown user/group           affected: 0
+duplicate doc_id                              affected: 0
+chunk text whitespace normalised              affected: 0
+chunks shorter than 20 words / empty          affected: 0
+duplicate chunk_id                            affected: 0
+duplicate chunk text                          affected: 0
+chunks whose document does not exist          affected: 0
+documents left with no chunks                 affected: 0
+duplicate ACL rows                            affected: 0
+ACL rows for unknown document                 affected: 0
+ACL rows for unknown user/group               affected: 0
+documents with no ACL                         affected: 0
+chunk access list differs from ACL table      affected: 0
+
+clean data written to ./data_1k_clean/  (report: cleaning_report.csv)
+users=1000 docs=2500 chunks=4897 acl_rows=3501
+== 4/7 loading permissions into Postgres
+DROP SCHEMA
+CREATE SCHEMA
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+COPY 1000
+COPY 60
+COPY 2547
+COPY 2500
+COPY 3501
+== 5/7 embedding the chunks and loading them into Qdrant
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7646.12it/s]
+uploaded 128 chunks  (13s)
+uploaded 256 chunks  (25s)
+uploaded 384 chunks  (37s)
+uploaded 512 chunks  (49s)
+uploaded 640 chunks  (61s)
+uploaded 768 chunks  (73s)
+uploaded 896 chunks  (85s)
+uploaded 1024 chunks  (97s)
+uploaded 1152 chunks  (109s)
+uploaded 1280 chunks  (121s)
+uploaded 1408 chunks  (133s)
+uploaded 1536 chunks  (145s)
+uploaded 1664 chunks  (157s)
+uploaded 1792 chunks  (170s)
+uploaded 1920 chunks  (182s)
+uploaded 2048 chunks  (194s)
+uploaded 2176 chunks  (206s)
+uploaded 2304 chunks  (218s)
+uploaded 2432 chunks  (230s)
+uploaded 2560 chunks  (242s)
+uploaded 2688 chunks  (254s)
+uploaded 2816 chunks  (266s)
+uploaded 2944 chunks  (278s)
+uploaded 3072 chunks  (291s)
+uploaded 3200 chunks  (303s)
+uploaded 3328 chunks  (315s)
+uploaded 3456 chunks  (327s)
+uploaded 3584 chunks  (340s)
+uploaded 3712 chunks  (352s)
+uploaded 3840 chunks  (364s)
+uploaded 3968 chunks  (376s)
+uploaded 4096 chunks  (388s)
+uploaded 4224 chunks  (400s)
+uploaded 4352 chunks  (413s)
+uploaded 4480 chunks  (425s)
+uploaded 4608 chunks  (437s)
+uploaded 4736 chunks  (449s)
+uploaded 4864 chunks  (461s)
+uploaded 4897 chunks  (464s)
+
+Qdrant now holds 4897 points in 'chunks_1k'
+  score=0.389  d848_c2  ['public:*']
+  score=0.361  d1950_c0  ['public:*']
+  score=0.357  d1622_c2  ['user:u339', 'user:u709', 'user:u872']
+== 6/7 counts (expect users 1000, docs 2500, acl_rows 3501)
+ users | docs | acl_rows 
+-------+------+----------
+  1000 | 2500 |     3501
+(1 row)
+
+== 7/7 checking that Qdrant and Postgres agree
+Qdrant points: 4897   documents with points: 2500   documents in Postgres ACL: 2500
+ACL mismatches (Qdrant vs Postgres): 0 documents
+HNSW index built: no (0 of 4897 vectors indexed) -> searches are exact (brute force); say so in the report
+eligible revocation pairs for pick_pair: 455
+testbed consistent
+Setup finished.

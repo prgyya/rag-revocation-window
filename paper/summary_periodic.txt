@@ -1,0 +1,7 @@
+kept 27 trials, excluded 3
+reason
+warm-up trial    3
+stale-state context rate: 0.877 (pooled from periodic/20s)
+    mode config  trials  cens_ctx  km_median  km_p95  ctx_max  urr_interval  cer_interval  urr_rel  cer_rel  rel_probes_ctx  lat_mean  exp_exposures
+periodic    20s      27         0      9.918  19.135   20.037         0.467         0.444    0.912    0.877            1404     9.733          0.015
+  periodic/20s: enforced in every trial; exposures measured

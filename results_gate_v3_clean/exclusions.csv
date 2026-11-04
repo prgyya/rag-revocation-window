@@ -1,0 +1,10 @@
+trial_id,reason
+query-time-gate-1-6f32f6,warm-up trial
+query-time-gate-2-c92222,warm-up trial
+query-time-gate-3-fe1aae,warm-up trial
+hybrid-gate-31-21025b,warm-up trial
+hybrid-gate-32-80928b,warm-up trial
+hybrid-gate-33-2b65a6,warm-up trial
+query-time-gate-ttl10s-61-52c9b7,warm-up trial
+query-time-gate-ttl10s-62-44dcc8,warm-up trial
+query-time-gate-ttl10s-63-b207c4,warm-up trial

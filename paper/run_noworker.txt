@@ -1,0 +1,5 @@
+event-no-worker-31-d6b678: u766 / d1267  NOT blocked within the window (censored)   CER = 0.443   URR = 0.459
+event-no-worker-32-f442ba: u547 / d821  NOT blocked within the window (censored)   CER = 0.439   URR = 0.457
+event-no-worker-33-f1869d: u499 / d2326  NOT blocked within the window (censored)   CER = 0.426   URR = 0.441
+event-no-worker-34-c2ed83: u723 / d1859  NOT blocked within the window (censored)   CER = 0.478   URR = 0.494
+event-no-worker-35-cae84d: u686 / d1761  NOT blocked within the window (censored)   CER = 0.426   URR = 0.445
